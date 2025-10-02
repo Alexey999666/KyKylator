@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KyKylator.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+
+            <!-- Display -->
+            <Label x:Name="DisplayLabel" 
+                   Text="0" 
+                   FontSize="32" 
+                   HorizontalOptions="Center" 
+                   HorizontalTextAlignment="End"
+                   BackgroundColor="LightGray"
+                   Padding="10"
+                   WidthRequest="300"/>
+
+            <!-- Calculator Buttons -->
+            <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="*, *, *, *, *" RowSpacing="10" ColumnSpacing="10">
+
+                <!-- First Row -->
+                <Button Grid.Row="0" Grid.Column="0" Text="C" Clicked="OnClearClicked" BackgroundColor="Orange"/>
+                <Button Grid.Row="0" Grid.Column="1" Text="±" Clicked="OnSignClicked" BackgroundColor="LightBlue"/>
+                <Button Grid.Row="0" Grid.Column="2" Text="%" Clicked="OnPercentageClicked" BackgroundColor="LightBlue"/>
+                <Button Grid.Row="0" Grid.Column="3" Text="÷" Clicked="OnOperatorClicked" BackgroundColor="Orange"/>
+
+                <!-- Second Row -->
+                <Button Grid.Row="1" Grid.Column="0" Text="7" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="1" Grid.Column="1" Text="8" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="1" Grid.Column="2" Text="9" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="1" Grid.Column="3" Text="×" Clicked="OnOperatorClicked" BackgroundColor="Orange"/>
+
+                <!-- Third Row -->
+                <Button Grid.Row="2" Grid.Column="0" Text="4" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="2" Grid.Column="1" Text="5" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="2" Grid.Column="2" Text="6" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="2" Grid.Column="3" Text="-" Clicked="OnOperatorClicked" BackgroundColor="Orange"/>
+
+                <!-- Fourth Row -->
+                <Button Grid.Row="3" Grid.Column="0" Text="1" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="3" Grid.Column="1" Text="2" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="3" Grid.Column="2" Text="3" Clicked="OnNumberClicked"/>
+                <Button Grid.Row="3" Grid.Column="3" Text="+" Clicked="OnOperatorClicked" BackgroundColor="Orange"/>
+
+                <!-- Fifth Row -->
+                <Button Grid.Row="4" Grid.Column="0" Text="0" Clicked="OnNumberClicked" Grid.ColumnSpan="2"/>
+                <Button Grid.Row="4" Grid.Column="2" Text="." Clicked="OnDecimalClicked"/>
+                <Button Grid.Row="4" Grid.Column="3" Text="=" Clicked="OnEqualsClicked" BackgroundColor="Orange"/>
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
