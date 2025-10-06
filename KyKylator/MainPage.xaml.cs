@@ -102,6 +102,7 @@ namespace KyKylator
             var currentValue = double.Parse(DisplayLabel.Text);
             DisplayLabel.Text = (currentValue / 100).ToString(CultureInfo.InvariantCulture);
         }
+        private bool IsNullOrEmpty()
     }
 
 }
