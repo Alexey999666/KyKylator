@@ -7,14 +7,14 @@
         <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
 
             <!-- Display -->
-            <Label x:Name="DisplayLabel" 
+            <Label x:Name="DisplayLabel"
                    Text="0" 
                    FontSize="32" 
                    HorizontalOptions="Center" 
                    HorizontalTextAlignment="End"
                    BackgroundColor="LightGray"
                    Padding="10"
-                   WidthRequest="300"/>
+                   WidthRequest="300" />
 
             <!-- Calculator Buttons -->
             <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="*, *, *, *, *" RowSpacing="10" ColumnSpacing="10">

@@ -8,6 +8,7 @@ namespace KyKylator
         private string _currentOperator = "";
         private bool _isOperatorClicked = false;
         private bool _isCalculationDone = false;
+        private const int MAX_DISPLAY_LENGTH = 15;
 
         public MainPage()
         {
@@ -18,6 +19,8 @@ namespace KyKylator
         {
             var button = (Button)sender;
             var number = button.Text;
+            if (DisplayLabel.Text.Length >= MAX_DISPLAY_LENGTH)
+                return;
 
             if (DisplayLabel.Text == "0" || _isOperatorClicked || _isCalculationDone)
             {
@@ -29,12 +32,17 @@ namespace KyKylator
             {
                 DisplayLabel.Text += number;
             }
+           
         }
 
         private void OnOperatorClicked(object sender, EventArgs e)
         {
-            var button = (Button)sender;
 
+            if (DisplayLabel.Text.Contains("Infinity") || DisplayLabel.Text.Contains("NaN"))
+            {
+                DisplayLabel.Text = "0";
+            }
+            var button = (Button)sender;
             if (!_isOperatorClicked)
             {
                 _firstNumber = double.Parse(DisplayLabel.Text);
@@ -47,7 +55,11 @@ namespace KyKylator
 
         private void OnEqualsClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(_currentOperator) && !_isCalculationDone)
+            if (DisplayLabel.Text.Contains("Infinity") || DisplayLabel.Text.Contains("NaN"))
+            {
+                DisplayLabel.Text = "0";
+            }
+            if ( !_isCalculationDone)
             {
                 _secondNumber = double.Parse(DisplayLabel.Text);
                 var result = Calculate(_firstNumber, _secondNumber, _currentOperator);
@@ -56,6 +68,7 @@ namespace KyKylator
                 _firstNumber = result;
                 _isCalculationDone = true;
             }
+
         }
 
         private double Calculate(double first, double second, string operation)
@@ -65,8 +78,7 @@ namespace KyKylator
                 "+" => first + second,
                 "-" => first - second,
                 "×" => first * second,
-                "÷" => second != 0 ? first / second : throw new DivideByZeroException("Нельзя делить на ноль"),
-                _ => throw new InvalidOperationException("Неизвестная операция")
+                "÷" => first / second
             };
         }
 
@@ -82,6 +94,10 @@ namespace KyKylator
 
         private void OnDecimalClicked(object sender, EventArgs e)
         {
+            if (DisplayLabel.Text.Contains("Infinity") || DisplayLabel.Text.Contains("NaN"))
+            {
+                DisplayLabel.Text = "0";
+            }
             if (!DisplayLabel.Text.Contains('.'))
             {
                 DisplayLabel.Text += ".";
@@ -90,7 +106,12 @@ namespace KyKylator
 
         private void OnSignClicked(object sender, EventArgs e)
         {
-            if (DisplayLabel.Text != "0")
+            if (DisplayLabel.Text.Contains("Infinity") || DisplayLabel.Text.Contains("NaN"))
+            {
+                DisplayLabel.Text = "0";
+            }
+
+            if (DisplayLabel.Text != "0" )
             {
                 var currentValue = double.Parse(DisplayLabel.Text);
                 DisplayLabel.Text = (-currentValue).ToString(CultureInfo.InvariantCulture);
@@ -99,10 +120,18 @@ namespace KyKylator
 
         private void OnPercentageClicked(object sender, EventArgs e)
         {
+            if (DisplayLabel.Text.Contains("Infinity") || DisplayLabel.Text.Contains("NaN"))
+            {
+                DisplayLabel.Text = "0";
+            }
+
             var currentValue = double.Parse(DisplayLabel.Text);
-            DisplayLabel.Text = (currentValue / 100).ToString(CultureInfo.InvariantCulture);
+                DisplayLabel.Text = (currentValue / 100).ToString(CultureInfo.InvariantCulture);
+            
+
         }
-        private bool IsNullOrEmpty()
-    }
+     
+
+    }   
 
 }
